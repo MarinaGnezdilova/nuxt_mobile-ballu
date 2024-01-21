@@ -1,0 +1,36 @@
+@import './normalize.css';
+
+@font-face {
+  src: url(../fonts/myriadpro-light.woff) format('woff');
+  font-family: 'MyriadProLight';
+  font-weight: 400;
+}
+
+@font-face {
+  src: url(../fonts/MyriadPro-Regular.woff) format('woff');
+  font-family: 'MyriadProRegular';
+  font-weight: 400;
+}
+
+:root {
+  --index: calc(1vw + 1vh);
+  --color-grey: #67696d;
+  --color-green: #52ae32;
+  --color-blue: #169fdb;
+  --color-light-grey: #d1d1d1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-grey);
+}
+
+html,
+body {
+  font-family: 'MyriadProLight', 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+}
