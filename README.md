@@ -1,0 +1,1 @@
+# nuxt_mobile-ballu
