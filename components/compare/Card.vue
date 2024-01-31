@@ -1,42 +1,72 @@
-
 import type { NuxtPicture } from '#build/components';
 <script setup lang="ts">
 interface CardProperty {
-  name: string,
-  value: string
-};
+  name: string;
+  value: string;
+}
 interface Card {
   card: {
-    series: string,
-    model: string,
-    src: string,
-    price: string,
-    properties: CardProperty[],
-  }
-  active?: boolean
-};
+    series: string;
+    model: string;
+    src: string;
+    price: string;
+    properties: CardProperty[];
+  };
+  active?: boolean;
+}
 const props = withDefaults(defineProps<Card>(), {
   active: false,
-})
+});
 </script>
 
 <template>
   <div class="card__block">
-    <div class="card" :class="{ 'card_active': active }">
-        <NuxtPicture
-            class="card_image-block"
-            :src="card.src"
-            :imgAttrs="{ alt:'Карточка товара', class:'card__image', loading: 'lazy' }" 
-        />
-      <div class="card__content">
-        <div class="card__series" :class="{ 'card__content_active': active }">Серия {{ card?.series }}</div>
-        <div class="card__model" :class="{ 'card__content_active': active }">{{ card?.model }}</div>
-        <div v-for="(prop, index) in card?.properties" :key="index">
-          <div class="card__prop" :class="{ 'card__content_active': active }">{{ prop.name }}</div>
-          <p class="card__prop-value" :class="{ 'card__content_active': active }">{{ prop.value }}</p>
+    <div class="card" :class="{ 'active': active }">
+      <NuxtPicture
+        class="card__imageBlock"
+        :class="{ 'active': active }"
+        :src="card.src"
+        :imgAttrs="{
+          alt: 'Карточка товара',
+          class: 'card__image',
+          loading: 'lazy',
+        }"
+      />
+      <div 
+        class="card__content"
+        :class="{ 'active': active }"
+        >
+        <div 
+          class="card__series" 
+          :class="{ 'active': active }">
+          Серия {{ card.series }}
+        </div>
+        <div 
+          class="card__model" 
+          :class="{ 'active': active }">
+          {{ card?.model }}
+        </div>
+        <div 
+          v-for="(prop, index) in card.properties" 
+          :key="index">
+          <div 
+            class="card__prop" 
+            :class="{ 'active': active }">
+            {{ prop.name }}
+          </div>
+          <p
+            class="card__propValue"
+            :class="{ 'active': active }"
+          >
+            {{ prop.value }}
+          </p>
         </div>
       </div>
-      <p :class="active ? 'card__price_active' : 'card__price'">{{ card?.price }}</p>
+      <p 
+        class="card__price"
+        :class="{'active': active}">
+        {{ card.price }}
+      </p>
     </div>
     <slot name="default" />
   </div>
@@ -56,18 +86,22 @@ const props = withDefaults(defineProps<Card>(), {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 360px;
+  width: 340px;
   height: 100%;
 }
 
-.card_active {
+.card.active {
   background-color: var(--color-green);
 }
 
-.card_image-block {
+.card__imageBlock {
   display: flex;
   justify-content: center;
   border-bottom: 1px solid var(--color-grey);
+}
+
+.card__imageBlock.active {
+  border-bottom: 1px solid #fff;
 }
 
 .card__image {
@@ -82,25 +116,34 @@ const props = withDefaults(defineProps<Card>(), {
   border-bottom: 1px solid var(--color-grey);
 }
 
+.card__content.active {
+  border-bottom: 1px solid #fff;
+}
+
 .card__series {
-  font-size: 1.4em;
+  font-size: 22px;
   font-weight: lighter;
   text-transform: uppercase;
 }
 
-.card__content_active {
+.card__series.active {
   color: #fff;
 }
 
+
 .card__model {
-  font-size: 3em;
+  font-size: 46px;
   font-weight: lighter;
   text-transform: uppercase;
   margin-bottom: 35px;
 }
 
+.card__model.active{
+  color: #fff;
+}
+
 .card__prop {
-  font-size: 1.2em;
+  font-size: 20px;
   text-transform: none;
   display: block;
   text-align: center;
@@ -108,32 +151,35 @@ const props = withDefaults(defineProps<Card>(), {
   margin-bottom: 10px;
 }
 
-.card__prop-value {
-  font-size: 1.4em;
+.card__prop.active {
+  color: #fff;
+}
+
+.card__propValue {
+  font-size: 22px;
   font-weight: bolder;
   text-transform: none;
   margin-bottom: 30px;
 }
 
+.card__propValue.active {
+  color: #fff;
+}
+
 .card__price {
   color: var(--color-blue);
-  font-size: 3em;
+  font-size: 46px;
   margin-top: 25px;
   margin-bottom: 25px;
   text-transform: none;
   text-align: center;
 }
 
-.card__price_active {
+.card__price.active {
   color: #fff;
-  font-size: 3em;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  text-transform: none;
-  text-align: center;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1440px) {
   .card__block {
     width: 300px;
   }
@@ -145,28 +191,28 @@ const props = withDefaults(defineProps<Card>(), {
 
 @media screen and (max-width: 1280px) {
   .card__block {
-    width: 200px;
+    width: 220px;
   }
 
   .card__series {
-    font-size: 1.2em;
+    font-size: 16px;
   }
 
   .card__model {
-    font-size: 2.5em;
+    font-size: 38px;
     height: 70px;
   }
 
   .card__price {
-    font-size: 2.5em;
+    font-size: 38px;
   }
 
-  .card__price_active {
-    font-size: 2.5em;
+  .card__price--active {
+    font-size: 38px;
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
   .card__block {
     width: 170px;
   }
@@ -176,78 +222,79 @@ const props = withDefaults(defineProps<Card>(), {
   }
 
   .card__series {
-    font-size: 1em;
+    font-size: 14px;
   }
 
   .card__model {
-    font-size: 1.8em;
+    font-size: 28px;
     height: 40px;
   }
 
   .card__prop {
-    font-size: 1em;
+    font-size: 14px;
   }
 
-  .card__prop-value {
-    font-size: 1.2em;
+  .card__propValue {
+    font-size: 16px;
   }
 
   .card__price {
-    font-size: 1.6em;
+    font-size: 28px;
   }
 
-  .card__price_active {
-    font-size: 1.6em;
+  .card__price--active {
+    font-size: 28px;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
   .card__block {
-    width: 220px;
+    width: 200px;
   }
 
   .card__series {
-    font-size: 0.8em;
+    font-size: 14px;
   }
 
   .card__model {
-    font-size: 1.3em;
+    font-size: 22px;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
   .card {
     margin-bottom: 10px;
   }
 
   .card__series {
-    font-size: 1em;
+    font-size: 16px;
   }
 
   .card__prop {
-    font-size: 0.8em;
+    font-size: 14px;
   }
 
-  .card__prop-value {
-    font-size: 1em;
+  .card__propValue {
+    font-size: 16px;
     margin-bottom: 20px;
   }
 
   .card__price {
-    font-size: 1.8em;
+    font-size: 28px;
   }
 
-  .card__price_active {
-    font-size: 1.8em;
+  .card__price--active {
+    font-size: 28px;
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 375px) {
   .card__price {
-    font-size: 1.5em;
+    font-size: 25px;
   }
 
-  .card__price_active {
-    font-size: 1.5em;
+  .card__price--active {
+    font-size: 25px;
   }
-}</style>
+}
+</style>

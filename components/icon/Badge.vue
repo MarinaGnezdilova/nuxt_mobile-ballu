@@ -1,8 +1,8 @@
 <script setup lang="ts">
 interface Badge {
-  title: string
-  description: string
-  union?: string
+  title: string;
+  description: string;
+  union?: string;
 }
 const props = withDefaults(defineProps<Badge>(), {});
 </script>
@@ -11,8 +11,8 @@ const props = withDefaults(defineProps<Badge>(), {});
   <div class="badge">
     <slot name="default" />
     <div class="badge__block">
-      <p class="badge__title"> {{ title }}</p>
-      <p v-if="union" class="badge__union"> {{ union }}</p>
+      <p class="badge__title">{{ title }}</p>
+      <p v-if="union" class="badge__union">{{ union }}</p>
     </div>
     <span class="badge__description">{{ description }}</span>
   </div>
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Badge>(), {});
   margin: 0;
   padding: 0;
   text-transform: uppercase;
-  font-size: 3.5em;
+  font-size: 55px;
 }
 
 .badge__union {
@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<Badge>(), {});
   padding: 0;
   text-transform: uppercase;
   text-align: center;
-  font-size: .8em;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -60,92 +60,93 @@ const props = withDefaults(defineProps<Badge>(), {});
   width: 95%;
   text-transform: uppercase;
   text-align: center;
-  font-size: .8em;
+  font-size: 16px;
   font-weight: 600;
   word-break: break-word;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1440px) {
   .badge {
-    width: 80px;
+    width: 95px;
     height: 100px;
   }
 
   .badge__title {
-    font-size: 2.1em;
+    font-size: 32px;
   }
 
   .badge__description {
-    font-size: 0.6em;
+    font-size: 10px;
   }
   .badge__union {
-    font-size: 0.6em;
+    font-size: 10px;
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
   .badge {
     width: 70px;
     height: 90px;
   }
 
   .badge__title {
-    font-size: 1.8em;
+    font-size: 28px;
   }
 
   .badge__description {
-    font-size: 0.6em;
+    font-size: 8px;
   }
 
   .badge__union {
-    font-size: 0.6em;
+    font-size: 8px;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
   .badge {
-    width: 55px;
-    height: 60px;
+    width: 52px;
+    height: 55px;
     border: 2px solid var(--color-blue);
   }
 
   .badge__title {
-    font-size: 1.2em;
+    font-size: 16px;
   }
 
   .badge__description {
-    font-size: 0.4em;
+    font-size: 5px;
   }
 
   .badge__union {
-    font-size: 0.4em;
+    font-size: 5px;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
   .badge {
     margin-left: 3px;
     width: 48px;
-    height: 55px;
+    height: 50px;
     border: 1px solid var(--color-blue);
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 375px) {
   .badge {
     width: 40px;
     height: 48px;
   }
 
   .badge__title {
-    font-size: .8em;
+    font-size: 14px;
   }
 
   .badge__description {
-    font-size: 0.3em;
+    font-size: 5px;
   }
 
   .badge__union {
-    font-size: 0.38em;
+    font-size: 5px;
   }
-}</style>
+}
+</style>

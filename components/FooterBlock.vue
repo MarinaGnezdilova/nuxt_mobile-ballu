@@ -1,17 +1,22 @@
 <script setup lang="ts"></script>
 
 <template>
-      <footer class="footer">
+  <footer class="footer">
     <div class="footer__social">
-      <a class="footer__vk" href="https://vk.com/ballu.official" target="_blank"></a>
+      <a
+        class="footer__vk"
+        href="https://vk.com/ballu.official"
+        target="_blank"
+      ></a>
     </div>
-    <div class="footer__copy">
-      <p>Copyright &copy; 2023</p>
-      <a href="https://www.ballu.ru/" class="footer__site">Ballu</a>
-      <p>Все права защищены. Условия использования и политика конфиденциальности</p>
+    <div class="footer__copyright">
+      <p class="footer__text">Copyright &copy; 2023</p>
+      <a href="https://www.ballu.ru/" class="footer__link">Ballu</a>
+      <p class="footer__text">
+        Все права защищены. Условия использования и политика конфиденциальности
+      </p>
     </div>
   </footer>
-
 </template>
 
 <style>
@@ -36,31 +41,31 @@
   display: block;
   width: 31px;
   height: 31px;
-  background-image: url('../assets/images/ico-social.png');
+  background-image: url("../assets/images/ico-social.png");
 }
-.footer__copy {
+.footer__copyright {
   display: flex;
   margin-top: 30px;
 }
-.footer__site {
+.footer__link {
   color: var(--color-green);
   margin: 0 5px;
 }
-@media screen and (max-width: 950px) {
-    .footer {
+@media screen and (max-width: 1024px) {
+  .footer {
     margin-top: 50px;
     margin-bottom: 50px;
   }
-    .footer__copy {
+  .footer__copyright {
     flex-direction: column;
     align-items: center;
-    font-size: 0.8em;
+    font-size: 14px;
     text-align: center;
   }
 }
-@media screen and (max-width: 750px) {
-    .footer__copy {
-    font-size: 0.4em;
+@media screen and (max-width: 768px) {
+  .footer__copyright {
+    font-size: 8px;
   }
 }
 </style>

@@ -1,31 +1,34 @@
 <script setup lang="ts">
 interface OtheItem {
-  src: string,
-  title: string,
-  href: string,
-  gridArea: string
+  src: string;
+  title: string;
+  href: string;
+  gridArea: string;
 }
-const props = withDefaults(defineProps<OtheItem>(), {
-});
+const props = withDefaults(defineProps<OtheItem>(), {});
 </script>
 
 <template>
   <NuxtLink class="other__item" :to="href" :class="gridArea">
     <div class="other__block">
-        <NuxtPicture
-             :src="src"
-             class="other__picture"
-             :imgAttrs="{ alt:'Другая продукция', class:'other__image', loading: 'lazy' }" 
-        />
+      <NuxtPicture
+        :src="src"
+        class="other__picture"
+        :imgAttrs="{
+          alt: 'Другая продукция',
+          class: 'other__image',
+          loading: 'lazy',
+        }"
+      />
     </div>
     <slot name="default" />
-    <div class="other__title-item"> {{ title }}</div>
-</NuxtLink>
+    <div class="other__title">{{ title }}</div>
+  </NuxtLink>
 </template>
 
 <style>
 .other__item {
-  width: 350px;
+  width: 320px;
   margin-right: 15px;
   cursor: pointer;
   text-decoration: none;
@@ -42,7 +45,7 @@ const props = withDefaults(defineProps<OtheItem>(), {
 }
 
 .other__block:after {
-  content: '';
+  content: "";
   height: 5px;
   width: 0;
   background: var(--color-green);
@@ -69,33 +72,37 @@ const props = withDefaults(defineProps<OtheItem>(), {
   width: 100%;
 }
 
-.other__title-item {
+.other__title {
   text-transform: uppercase;
   font-weight: lighter;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 18px;
   margin-top: 15px;
 }
 
 @media screen and (max-width: 1280px) {
   .other__item {
-    width: 150px;
+    width: 230px;
   }
 
-  .other__title-item {
-    font-size: 1em;
+  .other__title {
+    font-size: 16px;
   }
 }
 
-@media screen and (max-width: 750px) {}
+@media screen and (max-width: 1024px) {
+  .other__item {
+    width: 150px;
+  }
+}
 
-@media screen and (max-width: 500px) {
-  .other__title-item {
-    font-size: 0.7em;
+@media screen and (max-width: 768px) {
+  .other__item {
+    width: 120px;
   }
 
-  .other__item {
-    width: 100px;
+  .other__title {
+    font-size: 12px;
   }
 
   .other__block:after {
@@ -103,12 +110,23 @@ const props = withDefaults(defineProps<OtheItem>(), {
   }
 }
 
-@media screen and (max-width: 380px) {
-  .other__title-item {
-    font-size: .5em;
+@media screen and (max-width: 425px) {
+  .other__title {
+    font-size: 10px;
+  }
+
+  .other__item {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .other__title {
+    font-size: 6px;
   }
 
   .other__item {
     width: 70px;
   }
-}</style>
+}
+</style>

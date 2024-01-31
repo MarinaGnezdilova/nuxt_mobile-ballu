@@ -73,23 +73,13 @@ const clickMainMenuItem = () => props.clickMainMenuItem();
     justify-content: center;
     width: 8%;
     background-color: var(--color-green);
-    font-size: 1.7em;
-    /*margin-left: 50px;*/
+    font-size: 28px;
     cursor: pointer;
 }
 
-.header__block_active {
-    overflow-x: visible;
-    display: flex;
-}
-
-.header_block_hidden {
-    display: none;
-}
-
-@media screen and (max-width: 1650px) {
+@media screen and (max-width: 1440px) {
     .header__button {
-        font-size: 1.5em;
+        font-size: 25px;
     }
 
     .header__logo {
@@ -99,7 +89,7 @@ const clickMainMenuItem = () => props.clickMainMenuItem();
 
 @media screen and (max-width: 1280px) {
     .header__button {
-        font-size: 1.1em;
+        font-size: 20px;
     }
 
     .header__logo {
@@ -107,7 +97,7 @@ const clickMainMenuItem = () => props.clickMainMenuItem();
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
     .header {
         height: 38px;
     }
@@ -117,11 +107,11 @@ const clickMainMenuItem = () => props.clickMainMenuItem();
     }
 
     .header__button {
-        font-size: 0.8em;
+        font-size: 16px;
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
     .header {
         height: 30px;
     }
@@ -132,18 +122,18 @@ const clickMainMenuItem = () => props.clickMainMenuItem();
     }
 
     .header__button {
-        font-size: 0.6em;
+        font-size: 10px;
         margin-left: 0;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
     .header {
         padding-left: 0;
     }
 
     .header__button {
-        font-size: 0.4em;
+        font-size: 8px;
     }
 
     .header__logo {
@@ -151,9 +141,9 @@ const clickMainMenuItem = () => props.clickMainMenuItem();
     }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 375px) {
     .header__button {
-        font-size: 0.3em;
+        font-size: 5px;
     }
 }
 </style>

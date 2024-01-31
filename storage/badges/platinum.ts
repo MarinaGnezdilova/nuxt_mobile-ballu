@@ -1,4 +1,4 @@
-export const badges =  [
+export const badgesPlatinum =  [
         {
             title: "А",
             description: "Класс энергоэффективности"

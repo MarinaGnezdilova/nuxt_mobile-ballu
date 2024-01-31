@@ -1,28 +1,30 @@
 <script setup lang="ts">
 import { platinumSeries } from "../storage/series/platinum";
-import { smartElectronic } from '../storage/series/smartElectronic';
-import { smartMechanic } from '../storage/series/smartMechanic';
-import { smartPro } from '../storage/series/smartPro';
-import type { VNodeRef } from 'vue';
-import { useIntersectionObserver } from '@vueuse/core';
+import { smartElectronic } from "../storage/series/smartElectronic";
+import { smartMechanic } from "../storage/series/smartMechanic";
+import { smartPro } from "../storage/series/smartPro";
+import type { VNodeRef } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
+import { badgesPlatinum } from "../storage/badges/platinum";
+import { badgesSmart } from "../storage/badges/smart";
 
 const leftDevicePlatinum = platinumSeries.slice(0, 2);
 const rightDevicePlatinum = platinumSeries.slice(2);
 
 const props = defineProps({
-    parthnersBlockActive: Object,
-    activeBlockByScroll: Function,
-    hiddenBlock: Function
-})
+  parthnersBlockActive: Object,
+  activeBlockByScroll: Function,
+  hiddenBlock: Function,
+});
 
-const emit = defineEmits(['clickButton']);
-const first = 'first';
-const second ='second';
-const third = 'third';
-const forth = 'forth';
+const emit = defineEmits(["clickButton"]);
+const first = "first";
+const second = "second";
+const third = "third";
+const forth = "forth";
 
 const isPopupOpen = ref<boolean>(false);
-const currentCity = ref<string>('');
+const currentCity = ref<string>("");
 
 const selectCity = (city: string): void => {
   isPopupOpen.value = true;
@@ -32,232 +34,379 @@ const closePopup = (): void => {
   isPopupOpen.value = false;
 };
 
-const avto = ref<VNodeRef>('');
-const silent = ref<VNodeRef>('');
-const energoef = ref<VNodeRef>('');
-const options = ref<VNodeRef>('');
-const threeD = ref<VNodeRef>('');
-const compact = ref<VNodeRef>('');
-const dry = ref<VNodeRef>('');
-const night = ref<VNodeRef>('');
+const avto = ref<VNodeRef>("");
+const silent = ref<VNodeRef>("");
+const energoef = ref<VNodeRef>("");
+const options = ref<VNodeRef>("");
+const threeD = ref<VNodeRef>("");
+const compact = ref<VNodeRef>("");
+const dry = ref<VNodeRef>("");
+const night = ref<VNodeRef>("");
 
-const platinum = 'platinum';
-const smart = 'smart';
-const maximum = 'maximum';
-const silentString = 'silent';
-const energoString = 'energo';
-const optionsString = 'four';
-const threeDString = '3D';
-const compactString = 'compact';
-const dryString = 'dry';
-const nightString = 'night';
+const platinum = "platinum";
+const smart = "smart";
+const maximum = "maximum";
+const silentString = "silent";
+const energoString = "energo";
+const optionsString = "four";
+const threeDString = "3D";
+const compactString = "compact";
+const dryString = "dry";
+const nightString = "night";
 
-useIntersectionObserver(
-  avto,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(platinum, maximum);
-      props.hiddenBlock(silentString);
-    } else {
-      props.hiddenBlock(maximum);
-    }
-  },
-);
-useIntersectionObserver(
-  silent,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(platinum, silentString);
-      props.hiddenBlock(maximum);
-      props.hiddenBlock(energoString);
-    } else {
-      props.hiddenBlock(silentString);
-    }
-  },
-);
-useIntersectionObserver(
-  energoef,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(platinum, energoString)
-      props.hiddenBlock(silentString);
-    } else {
-      props.hiddenBlock(energoString);
-    }
-  },
-);
-useIntersectionObserver(
-  options,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(platinum, optionsString);
-      props.hiddenBlock(energoString);
-    } else {
-      props.hiddenBlock(optionsString);
-    }
-  },
-);
-useIntersectionObserver(
-  threeD,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(smart, threeDString);
-      props.hiddenBlock(compactString);
-    } else {
-      props.hiddenBlock(threeDString);
-    }
-  },
-);
-useIntersectionObserver(
-  compact,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(smart, compactString);
-      props.hiddenBlock(threeDString);
-      props.hiddenBlock(dryString);
-    } else {
-      props.hiddenBlock(compactString);
-    }
-  },
-);
-useIntersectionObserver(
-  dry,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(smart, dryString);
-      props.hiddenBlock(compactString);
-      props.hiddenBlock(nightString);
-    } else {
-      props.hiddenBlock(dryString);
-    }
-  },
-);
-useIntersectionObserver(
-  night,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
-      props.activeBlockByScroll(smart, nightString);
-      props.hiddenBlock(dryString);
-    } else {
-      props.hiddenBlock(nightString);
-    }
-  },
-);
+useIntersectionObserver(avto, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(platinum, maximum);
+    props.hiddenBlock(silentString);
+  } else {
+    props.hiddenBlock(maximum);
+  }
+});
+useIntersectionObserver(silent, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(platinum, silentString);
+    props.hiddenBlock(maximum);
+    props.hiddenBlock(energoString);
+  } else {
+    props.hiddenBlock(silentString);
+  }
+});
+useIntersectionObserver(energoef, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(platinum, energoString);
+    props.hiddenBlock(silentString);
+  } else {
+    props.hiddenBlock(energoString);
+  }
+});
+useIntersectionObserver(options, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(platinum, optionsString);
+    props.hiddenBlock(energoString);
+  } else {
+    props.hiddenBlock(optionsString);
+  }
+});
+useIntersectionObserver(threeD, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(smart, threeDString);
+    props.hiddenBlock(compactString);
+  } else {
+    props.hiddenBlock(threeDString);
+  }
+});
+useIntersectionObserver(compact, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(smart, compactString);
+    props.hiddenBlock(threeDString);
+    props.hiddenBlock(dryString);
+  } else {
+    props.hiddenBlock(compactString);
+  }
+});
+useIntersectionObserver(dry, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(smart, dryString);
+    props.hiddenBlock(compactString);
+    props.hiddenBlock(nightString);
+  } else {
+    props.hiddenBlock(dryString);
+  }
+});
+useIntersectionObserver(night, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    props.activeBlockByScroll(smart, nightString);
+    props.hiddenBlock(dryString);
+  } else {
+    props.hiddenBlock(nightString);
+  }
+});
 </script>
 
-<template>
-    <IntroPlatinum />
-    <SectionMaximum ref="avto"/>
-    <SectionSilent ref="silent"/>
-    <SectionEnergo ref="energoef"/>
-    <SectionEffective />
-    <SectionFour ref="options"/>
-    <section v-if="platinumSeries.length > 0" class="compare">
+<template>  
+  <Intro
+    id="platinum"
+    name="Platinum"
+    backgroungPicture="/bg-intro-1.webp"
+    series="Серия Paltinum"
+    srcDevice="_nuxt/assets/images/device-intro-1.png"
+  >
+    <template v-slot:title>
+      <span class="titleText" data-aos="fade-up" data-aos-duration="1000"
+        >Надежная работа</span
+      >
+      <span
+        class="titleText"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+        data-aos-delay="300"
+        >на охлаждение</span
+      >
+      <span
+        class="titleText"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-delay="600"
+        >и обогрев</span
+      >
+    </template>
+    <template v-slot:badges>
+      <IconBadge
+        v-for="(item, index) in badgesPlatinum"
+        :title="item.title"
+        :description="item.description"
+        :union="item.union"
+        :key="index"
+        data-aos="zoom-in-up"
+        data-aos-duration="500"
+        :data-aos-delay="(index + 1) * 400"
+      />
+      <NuxtPicture
+        class="seriesPicture"
+        src="/icon-intro-6.png"
+        data-aos="zoom-in"
+        data-aos-duration="3000"
+        :imgAttrs="{
+          alt: 'Иконка для серии',
+          class: 'series',
+          loading: 'lazy',
+        }"
+      />
+    </template>
+  </Intro>
+  <SectionMaximum ref="avto" />
+  <SectionSilent ref="silent" />
+  <SectionEnergo ref="energoef" />
+  <SectionEffective />
+  <SectionFour ref="options" />
+  <section v-if="platinumSeries.length > 0" class="compare">
     <SectionTitle class="title-item compare__title">
       <span @click="$emit('clickButton')">ТАБЛИЦА СРАВНЕНИЯ МОДЕЛЕЙ</span>
     </SectionTitle>
     <div class="compare__table">
-      <div class="compare-column compare-column_left">
-        <CompareCard v-for="card in leftDevicePlatinum" :key="card.model" :card="card" :active="card.model === 'BPHS-09H'">
-          <CompareButtonBuy text="Купить на shop.ballu.ru" isForOfficalSite href="#" />
-          <CompareButtonBuy text="Купить у  партнеров" @click="$emit('clickButton', first)" href="#countries"/>
+      <div class="compare__column">
+        <CompareCard
+          v-for="card in leftDevicePlatinum"
+          :key="card.model"
+          :card="card"
+          :active="card.model === 'BPHS-09H'"
+        >
+          <CompareButtonBuy
+            text="Купить на shop.ballu.ru"
+            isForOfficalSite
+            href="#"
+          />
+          <CompareButtonBuy
+            text="Купить у партнеров"
+            @click="$emit('clickButton', first)"
+            href="#countries"
+          />
         </CompareCard>
       </div>
-      <div class="compare-column compare-column_right">
-        <CompareCard v-for="card in rightDevicePlatinum" :key="card.model" :card="card">
-          <CompareButtonBuy text="Купить на shop.ballu.ru" isForOfficalSite href="#" />
-          <CompareButtonBuy text="Купить у  партнеров" @click="$emit('clickButton', first)" href="#countries"/>
+      <div class="compare__column">
+        <CompareCard
+          v-for="card in rightDevicePlatinum"
+          :key="card.model"
+          :card="card"
+        >
+          <CompareButtonBuy
+            text="Купить на shop.ballu.ru"
+            isForOfficalSite
+            href="#"
+          />
+          <CompareButtonBuy
+            text="Купить у партнеров"
+            @click="$emit('clickButton', first)"
+            href="#countries"
+          />
         </CompareCard>
       </div>
     </div>
   </section>
-
-  <section id="parthners">
-    <div id="countries"></div>
-    <ParthenerList :class="{ 'hidden' : !props.parthnersBlockActive[first] }" @clickCity="selectCity"/>
+  <section id="countries">
+    <ParthenerList
+      :class="{ hidden: !props.parthnersBlockActive[first] }"
+      @clickCity="selectCity"
+    />
   </section>
-
-    <IntroSmart />
-    <SectionThreeD ref="threeD"/>
-    <SectionCompact ref="compact"/>
-    <SectionDry ref="dry"/>
-    <SectionNight ref="night"/>
-    <section v-if="smartElectronic.length > 0 || smartMechanic.length > 0 || smartPro.length > 0" class="compare">
+  <Intro
+    id="smart"
+    name="Smart"
+    backgroungPicture="/bg-intro-2.webp"
+    series="Серия Smart"
+    srcDevice="_nuxt/assets/images/device-intro-2.png"
+  >
+    <template v-slot:title>
+      <span class="titleText" data-aos="fade-up" data-aos-duration="1000"
+        >Расширяя границы</span
+      >
+      <span class="titleText" data-aos="fade-up" data-aos-duration="1500"
+        >мобильные</span
+      >
+      <span class="titleText" data-aos="fade-up" data-aos-duration="2000"
+        >кондиционеры</span
+      >
+      <span class="titleText" data-aos="fade-up" data-aos-duration="2500"
+        >для дома и бизнеса</span
+      >
+    </template>
+    <template v-slot:badges>
+      <IconBadge
+        v-for="(item, index) in badgesSmart"
+        :title="item.title"
+        :description="item.description"
+        :union="item.union"
+        :key="index"
+        data-aos="zoom-in-up"
+        data-aos-duration="500"
+        :data-aos-delay="(index + 1) * 400"
+      />
+    </template>
+    >
+  </Intro>
+  <SectionThreeD ref="threeD" />
+  <SectionCompact ref="compact" />
+  <SectionDry ref="dry" />
+  <SectionNight ref="night" />
+  <section
+    v-if="smartElectronic.length > 0"
+    class="compare"
+  >
     <SectionTitle class="title-item compare__title">
       <span>Таблица СРАВНЕНИЯ МОДЕЛЕЙ</span>
     </SectionTitle>
     <div class="compare__table">
-      <div class="compare-column compare__smart-el">
-        <CompareCard v-for="card in smartElectronic" :key="card.model" :card="card" :active="card.model === 'BPAC-07 CE_1'"
-          class="compare_smart-el-card">
-          <CompareButtonBuy text="Купить на shop.ballu.ru" isForOfficalSite href="#" />
-          <CompareButtonBuy text="Купить у  партнеров" @click="$emit('clickButton', second)" href="#countries_smart" />
+      <div class="compare__column compare__smart">
+        <CompareCard
+          v-for="card in smartElectronic"
+          :key="card.model"
+          :card="card"
+          :active="card.model === 'BPAC-07 CE_1'"
+          class="compare_smart-el-card"
+        >
+          <CompareButtonBuy
+            text="Купить на shop.ballu.ru"
+            isForOfficalSite
+            href="#"
+          />
+          <CompareButtonBuy
+            text="Купить у партнеров"
+            @click="$emit('clickButton', second)"
+            href="#countries_smart"
+          />
         </CompareCard>
       </div>
     </div>
-    <section id="parthners">
-    <div id="countries_smart"></div>
-    <ParthenerList :class="{ 'hidden'  : !props.parthnersBlockActive[second]}" @clickCity="selectCity"/>
-    </section>
-
-    <div class="compare__table">
-      <div class="compare-column compare-mechanic-block">
-        <CompareCard v-for="card in smartMechanic" :key="card.model" :card="card">
-          <CompareButtonBuy text="Купить на shop.ballu.ru" isForOfficalSite href="#" />
-          <CompareButtonBuy text="Купить у  партнеров" @click="$emit('clickButton', third)" href="#countries_smart-mechanic" />
-        </CompareCard>
-      </div>
-    </div>
-    <section id="countries_smart-mechanic">
-    <div id="countries"></div>
-    <ParthenerList :class="{ 'hidden': !props.parthnersBlockActive[third] }" @clickCity="selectCity"/>
-    </section>
-
-    <div class="compare__table ">
-      <div class="compare-column compare-pro__block">
-        <CompareCard v-for="card in smartPro" :key="card.model" :card="card">
-          <CompareButtonBuy text="Купить на shop.ballu.ru" isForOfficalSite href="#" />
-          <CompareButtonBuy text="Купить у  партнеров" @click="$emit('clickButton', forth)" href="#countries_smart-pro" />
-        </CompareCard>
-      </div>
-    </div>
-    <section id="parthners">
-    <div id="countries_smart-pro"></div>
-    <ParthenerList :class="{ 'hidden' : !props.parthnersBlockActive[forth] }" @clickCity="selectCity"/>
-    </section>
   </section>
-    <SectionOthers />
-    <FooterBlock />
-    <ParthenerPopup :class="{ 'popup_hidden': !isPopupOpen }" :selectedCity="currentCity" @close="closePopup"/>
+  <section id="countries_smart">
+     <ParthenerList
+      :class="{ hidden: !props.parthnersBlockActive[second] }"
+      @clickCity="selectCity"
+    />
+  </section>
+  <section
+    v-if="smartMechanic.length > 0"
+    class="compare"
+  >
+    <div class="compare__table">
+      <div class="compare__column compare__mechanic">
+        <CompareCard
+          v-for="card in smartMechanic"
+          :key="card.model"
+          :card="card"
+        >
+          <CompareButtonBuy
+            text="Купить на shop.ballu.ru"
+            isForOfficalSite
+            href="#"
+          />
+          <CompareButtonBuy
+            text="Купить у партнеров"
+            @click="$emit('clickButton', third)"
+            href="#countries_smart-mechanic"
+          />
+        </CompareCard>
+      </div>
+    </div>
+  </section>
+  <section id="countries_smart-mechanic">
+     <ParthenerList
+      :class="{ hidden: !props.parthnersBlockActive[third] }"
+      @clickCity="selectCity"
+    />
+  </section>
+  <section
+    v-if="smartPro.length > 0"
+    class="compare"
+  >
+    <div class="compare__table">
+      <div class="compare__column compare__pro">
+        <CompareCard v-for="card in smartPro" :key="card.model" :card="card">
+          <CompareButtonBuy
+            text="Купить на shop.ballu.ru"
+            isForOfficalSite
+            href="#"
+          />
+          <CompareButtonBuy
+            text="Купить у партнеров"
+            @click="$emit('clickButton', forth)"
+            href="#countries_smart-pro"
+          />
+        </CompareCard>
+      </div>
+    </div>
+  </section>
+  <section id="countries_smart-pro">
+      <ParthenerList
+        :class="{ hidden: !props.parthnersBlockActive[forth] }"
+        @clickCity="selectCity"
+      />
+    </section>
+  <SectionOthers />
+  <FooterBlock />
+   <ParthenerPopup
+    :class="{ hidden: !isPopupOpen }"
+    :selectedCity="currentCity"
+    @close="closePopup"
+  />
 </template>
 
 <style>
-.title-item {
-  width: 65%;
-  font-size: 3.8em;
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.titleText {
+  color: #fff;
   text-transform: uppercase;
-  font-weight: lighter;
-  margin-top: 70px;
-  line-height: 1;
+  font-weight: 400;
+  font-size: 48px;
 }
 
-.compare__title {
-  margin-top: 30px;
-}
-
-.compact__title {
-  width: 100%;
-}
-
-.compare__title {
-  width: 100%;
-  text-align: center;
+.series {
+  height: 60px;
 }
 
 .compare {
   display: flex;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+}
+
+.compare__title {
+  width: 100%;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -269,51 +418,46 @@ useIntersectionObserver(
   margin-bottom: 100px;
 }
 
-.compare-column {
+.compare__column {
   display: flex;
 }
 
-.compare-column_left {
+.compare__column:first-child {
   margin-right: 25px;
 }
 
-.compare-column_right {
+.compare__column:last-child {
   margin-left: 25px;
 }
 
-.compare__card-block {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.compare-mechanic-block {
+.compare__mechanic {
   margin-top: 0;
-}
-
-.compare__smart-el-block {
-  margin-bottom: 50px;
-  margin-bottom: 0;
 }
 
 .hidden {
   display: none;
 }
 
+.seriesPicture {
+  height: 100%;
+  margin-left: 10px;
+  display: flex;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 1280px) {
-  .title-item {
-    font-size: 2.5em;
+  .titleText {
+    font-size: 30px;
   }
 }
 
-@media screen and (max-width: 950px) {
-  .other__row {
-    flex-direction: column;
+@media screen and (max-width: 1024px) {
+  .titleText {
+    font-size: 22px;
   }
 
-  .title-item {
-    font-size: 1.8em;
+  .series {
+    height: 40px;
   }
 
   .compare__table {
@@ -321,25 +465,27 @@ useIntersectionObserver(
     margin-bottom: 70px;
   }
 
-  .compare-column_left {
+  .compare__column:first-child {
     margin-right: 15px;
   }
 
-  .compare-column_right {
+  .compare__column:last-child {
     margin-left: 15px;
   }
 
-  .compare-pro__block {
+  .compare__pro {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media screen and (max-width: 750px) {
-  .title-item {
-    font-size: 1.2em;
-    width: 65%;
-    margin-top: 20px;
+@media screen and (max-width: 768px) {
+  .titleText {
+    font-size: 16px;
+  }
+
+  .series {
+    height: 30px;
   }
 
   .compare__table {
@@ -347,17 +493,15 @@ useIntersectionObserver(
     align-items: center;
   }
 
-  .compare-column_left {
+  .compare__column:first-child {
     margin-right: 0;
   }
 
-  .compare-column_right {
+  .compare__column:last-child {
     margin-left: 0;
   }
-
-  .compare__smart-el {
+  .compare__smart {
     flex-direction: column;
-    width: 50%;
     margin: 0 auto;
   }
 
@@ -366,9 +510,13 @@ useIntersectionObserver(
   }
 }
 
-@media screen and (max-width: 500px) {
-  .title-item {
-    font-size: 0.8em;
+@media screen and (max-width: 425px) {
+  .titleText {
+    font-size: 14px;
+  }
+
+  .series {
+    height: 25px;
   }
 
   .section__content {
@@ -383,31 +531,24 @@ useIntersectionObserver(
     margin-bottom: 30px;
   }
 
-  .compare-column_left {
+  .compare__column {
     display: grid;
     grid-template-columns: 1fr;
   }
 
-  .compare-column_right {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .compare-mechanic-block {
+  .compare__mechanic {
     display: flex;
     flex-direction: column;
   }
 
-  .compare-pro__block {
+  .compare__pro {
     grid-template-columns: 1fr;
   }
 }
 
-@media screen and (max-width: 380px) {
-  .title-item {
-    margin-top: 21px;
-    font-size: 0.7em;
+@media screen and (max-width: 375px) {
+  .series {
+    display: none;
   }
 }
-
 </style>

@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Button>(), {
 </script>
 
 <template>
-    <NuxtLink class="button" :class="{ 'button_site': isForOfficalSite }" :to="href">
+    <NuxtLink class="button" :class="{ 'offical': isForOfficalSite }" :to="href">
         <slot name="default" />
         {{ text }}
     </NuxtLink>
@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Button>(), {
     background-color: #fff;
     border: 1px solid var(--color-grey);
     text-transform: uppercase;
-    font-size: 1.5em;
+    font-size: 24px;
     font-family: inherit;
     cursor: pointer;
     margin-bottom: 20px;
@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<Button>(), {
     color: #fff;
 }
 
-.button_site {
+.offical {
     background-color: var(--color-blue);
     color: #fff;
     border: none;
@@ -47,20 +47,19 @@ const props = withDefaults(defineProps<Button>(), {
 
 @media screen and (max-width: 1280px) {
     .button {
-        font-size: 1.3em;
+        font-size: 20px;
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
     .button {
-        font-size: 1em;
+        font-size: 14px;
     }
 
-    @media screen and (max-width: 500px) {
-        .button {
-            font-size: 0.8em;
-            height: 40px;
-            margin-bottom: 10px;
-        }
+@media screen and (max-width: 375px) {
+    .button {
+        height: 40px;
+        margin-bottom: 10px;
+    }
     }
 }</style>
