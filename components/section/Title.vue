@@ -1,17 +1,14 @@
 <template>
     <div class="title">
-        <ClientOnly>
             <slot name="default" />
-        </ClientOnly>
-        
     </div>
 </template>
 
 <style>
     .title {
         display: flex;
-        flex-direction: column;
         width: 65%;
+        flex-direction: column;
         font-size: 46px;
         text-transform: uppercase;
         font-weight: lighter;
@@ -33,16 +30,19 @@
 
     @media screen and (max-width: 768px) {
         .title {
-            font-size: 18px;
-            width: 65%;
+            background-color: rgb(255, 255, 255, 0.7);
+            width: fit-content;
+            max-width: 200px;
+            padding: 5px;
+            font-size: 16px;
             margin-top: 20px;
+            margin-bottom: 5px;
         }
     }
 
     @media screen and (max-width: 425px) {
         .title {
-            background-color: rgb(255, 255, 255, 0.7);
-            font-size: 16px;
+            font-size: 14px;
             width: 80%;
         }
     }

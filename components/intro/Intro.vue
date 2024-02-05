@@ -4,9 +4,14 @@ interface IntroBlock {
   backgroungPicture: string;
   series: string;
   srcDevice: string;
+  isVisible: boolean;
 }
 
 const props = withDefaults(defineProps<IntroBlock>(), {});
+let isVisibleTitle = ref<boolean>(false);
+let isVisibleText = ref<boolean>(false);
+let isVisibleSeries = ref<boolean>(false);
+let isVisiblePicture = ref<boolean>(false);
 </script>
 
 <template>
@@ -23,37 +28,26 @@ const props = withDefaults(defineProps<IntroBlock>(), {});
     <div class="about__block">
       <div class="about__content">
         <IconLogo type="white" />
-        <ClientOnly>
           <div class="about__title">
             <slot name="title" />
           </div>
-        </ClientOnly>
       </div>
-
-      <ClientOnly>
         <div class="about__content">
           <span
             class="about__subtitle"
-            data-aos="fade-up"
-            data-aos-duration="1000"
+            :class="isVisible ? 'fadeUp delay0' : ''"
             >Мобильный кондиционер</span
           >
           <div class="about__subtitleBlock">
             <p
               class="about__subtitleText"
-              data-aos="fade-up"
-              data-aos-duration="1500"
-              data-aos-offset="-200"
-              data-aos-delay="300"
+              :class="isVisible ? 'fadeUp delay1' : ''"
             >
               серия
             </p>
             <p
               class="about__subtitleSeries"
-              data-aos="fade-up"
-              data-aos-duration="1500"
-              data-aos-offset="-200"
-              data-aos-delay="300"
+              :class="isVisible ? 'fadeUp delay1' : ''"
             >
               {{ name }}
             </p>
@@ -62,19 +56,15 @@ const props = withDefaults(defineProps<IntroBlock>(), {});
             <slot name="badges" />
           </ul>
         </div>
-      </ClientOnly>
     </div>
-    <ClientOnly>
       <picture class="about__device">
         <img
           :alt="name"
-          data-aos="fade-up"
-          data-aos-duration="2000"
           class="about__imageDevice"
+          :class="isVisible ? 'fadeUp delay0' : ''"
           :src="srcDevice"
         />
       </picture>
-    </ClientOnly>
   </section>
 </template>
 

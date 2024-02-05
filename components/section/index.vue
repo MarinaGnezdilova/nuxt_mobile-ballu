@@ -106,22 +106,26 @@ const props = withDefaults(defineProps<Section>(), {
     .section__content {
         top: 0;
     }
-  .section__text {
+
+    .section__text {
     font-size: 14px;
     color: #0c0d0d;
-  }
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .section__block {
-        width: 70%;
-    }
-    .section__content.right {
-        left: 40%;
-    }
+  .section__block {
+    width: 70%;
+  }
+
+  .section__content.right {
+    left: 40%;
+  }
+
   .section__block.right {
     width: 98%;
   }
+
   .section__text {
     margin-top: 5px;
     font-size: 10px;
@@ -130,12 +134,12 @@ const props = withDefaults(defineProps<Section>(), {
 
 @media screen and (max-width: 425px) {
   .section__block {
-    width: 80%;
+    width: 98%;
   }
 
-  .section__block.right {
-    width: 80%;
-  }
+  .section__content.right {
+        left: 2%;
+    }
 
   .section__text {
     margin-top: 5px;

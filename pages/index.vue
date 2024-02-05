@@ -25,6 +25,10 @@ const forth = "forth";
 
 const isPopupOpen = ref<boolean>(false);
 const currentCity = ref<string>("");
+let isVisiblePlatinum = ref<boolean>(false);
+let isVisibleSmart = ref<boolean>(false);
+let isVisibleBadgePlatinum = ref<boolean>(false);
+let isVisibleBadgeSmart = ref<boolean>(false);
 
 const selectCity = (city: string): void => {
   isPopupOpen.value = true;
@@ -42,6 +46,8 @@ const threeD = ref<VNodeRef>("");
 const compact = ref<VNodeRef>("");
 const dry = ref<VNodeRef>("");
 const night = ref<VNodeRef>("");
+const platinumIntro = ref<VNodeRef>("");
+const smartIntro = ref<VNodeRef>("");
 
 const platinum = "platinum";
 const smart = "smart";
@@ -53,6 +59,26 @@ const threeDString = "3D";
 const compactString = "compact";
 const dryString = "dry";
 const nightString = "night";
+
+useIntersectionObserver(platinumIntro, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    isVisiblePlatinum.value = true;
+    isVisibleBadgePlatinum.value =true;
+  } else {
+    isVisibleBadgePlatinum.value =  false;
+    isVisiblePlatinum.value = false;
+}
+});
+
+useIntersectionObserver(smartIntro, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    isVisibleSmart.value = true;
+    isVisibleBadgeSmart.value  = true;
+  } else {
+    isVisibleSmart.value = false;
+    isVisibleBadgeSmart.value =  false;
+}
+});
 
 useIntersectionObserver(avto, ([{ isIntersecting }]) => {
   if (isIntersecting) {
@@ -125,28 +151,28 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
 
 <template>  
   <Intro
+    ref="platinumIntro"
     id="platinum"
     name="Platinum"
     backgroungPicture="/bg-intro-1.webp"
     series="Серия Paltinum"
     srcDevice="_nuxt/assets/images/device-intro-1.png"
+    :isVisible="isVisiblePlatinum"
   >
     <template v-slot:title>
-      <span class="titleText" data-aos="fade-up" data-aos-duration="1000"
+      <span 
+        class="titleText"
+        :class="isVisiblePlatinum ? 'fadeUp delay0' : ''"
         >Надежная работа</span
       >
       <span
         class="titleText"
-        data-aos="fade-up"
-        data-aos-duration="1500"
-        data-aos-delay="300"
+        :class="isVisiblePlatinum ? 'fadeUp delay1' : ''"
         >на охлаждение</span
       >
       <span
         class="titleText"
-        data-aos="fade-up"
-        data-aos-duration="2000"
-        data-aos-delay="600"
+        :class="isVisiblePlatinum ? 'fadeUp delay2' : ''"
         >и обогрев</span
       >
     </template>
@@ -157,15 +183,13 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
         :description="item.description"
         :union="item.union"
         :key="index"
-        data-aos="zoom-in-up"
-        data-aos-duration="500"
-        :data-aos-delay="(index + 1) * 400"
+        :class="isVisibleBadgePlatinum ? `fadeUp delay${index}` : ''"
+
       />
       <NuxtPicture
         class="seriesPicture"
+        :class="isVisiblePlatinum ? 'fadeUp delay6' : ''"
         src="/icon-intro-6.png"
-        data-aos="zoom-in"
-        data-aos-duration="3000"
         :imgAttrs="{
           alt: 'Иконка для серии',
           class: 'series',
@@ -231,22 +255,32 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   </section>
   <Intro
     id="smart"
+    ref="smartIntro"
     name="Smart"
     backgroungPicture="/bg-intro-2.webp"
     series="Серия Smart"
     srcDevice="_nuxt/assets/images/device-intro-2.png"
+    :isVisible="isVisibleSmart"
   >
     <template v-slot:title>
-      <span class="titleText" data-aos="fade-up" data-aos-duration="1000"
+      <span 
+        class="titleText"
+        :class="isVisibleSmart ? 'fadeUp delay0' : ''"
         >Расширяя границы</span
       >
-      <span class="titleText" data-aos="fade-up" data-aos-duration="1500"
+      <span 
+        class="titleText"
+        :class="isVisibleSmart ? 'fadeUp delay1' : ''"
         >мобильные</span
       >
-      <span class="titleText" data-aos="fade-up" data-aos-duration="2000"
+      <span 
+        class="titleText"
+        :class="isVisibleSmart ? 'fadeUp delay2' : ''"
         >кондиционеры</span
       >
-      <span class="titleText" data-aos="fade-up" data-aos-duration="2500"
+      <span 
+        class="titleText"
+        :class="isVisibleSmart ? 'fadeUp delay2' : ''"
         >для дома и бизнеса</span
       >
     </template>
@@ -257,9 +291,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
         :description="item.description"
         :union="item.union"
         :key="index"
-        data-aos="zoom-in-up"
-        data-aos-duration="500"
-        :data-aos-delay="(index + 1) * 400"
+        :class="isVisibleBadgeSmart ? `fadeUp delay${index}` : ''"
       />
     </template>
     >

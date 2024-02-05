@@ -1,5 +1,18 @@
 <script setup lang="ts">
 import { sections } from "../../storage/content/sections";
+import { useIntersectionObserver } from "@vueuse/core";
+import type { VNodeRef } from "vue";
+
+let isVisible = ref<boolean>(false);
+const title = ref<VNodeRef>("");
+
+useIntersectionObserver(title, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    isVisible.value = true;
+  } else {
+    isVisible.value = false;
+  }
+});
 </script>
 
 <template>
@@ -10,13 +23,11 @@ import { sections } from "../../storage/content/sections";
     :text="sections.compact.text"
   >
     <template v-slot:title>
-      <SectionTitle>
+      <SectionTitle ref="title">
         <span
           v-for="(item, index) in sections.threeD.title"
           :key="index"
-          data-aos="fade-up"
-          data-aos-duration="1500"
-          :data-aos-delay="300 * index"
+          :class="isVisible ? `fadeUp delay${index}` : ''"
         >
           {{ item }}
         </span>

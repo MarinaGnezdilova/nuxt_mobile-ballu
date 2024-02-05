@@ -24,7 +24,7 @@ const convertCitiesToLowerCase = (cities:string[]) => {
   return newCities;
 }
 
-const convertCitiesinNewSrtucture = (item:CountryAndCities) => {
+const convertCitiesInNewSrtucture = (item:CountryAndCities) => {
   let citiesSeparatedByLetters: string[][] = [];
   let newCitiesArray =[];
   newCitiesArray = convertCitiesToLowerCase(item.cities);
@@ -36,7 +36,7 @@ const convertCitiesinNewSrtucture = (item:CountryAndCities) => {
 
 countriesAndCities.forEach(el => {
 let cities = [];
-cities = convertCitiesinNewSrtucture(el).filter( el => el.length > 0);
+cities = convertCitiesInNewSrtucture(el).filter( el => el.length > 0);
 newCountryWihCities.push(
   {
     country: el.country,

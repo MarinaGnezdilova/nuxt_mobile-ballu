@@ -12,19 +12,14 @@ const props = withDefaults(defineProps<MenuItem>(), {
 
 <template>
   <li class="nav__item" :class="{ 'active': isActive }">
-    <ClientOnly>
       <NuxtLink
-      data-aos="fade-left"
-      data-aos-duration="1500"
-      :data-aos-delay="`${delay}`"
       class="nav__link"
+      :class="`fadeRight delay${delay}`"
       :to="`#${href}`"
     >
       {{ text }}
       <slot name="default" />
     </NuxtLink>
-    </ClientOnly>
-    
   </li>
 </template>
 <style>

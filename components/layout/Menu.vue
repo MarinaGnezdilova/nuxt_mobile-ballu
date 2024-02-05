@@ -31,7 +31,7 @@ const smart = "smart";
   >
     <LayoutMenuItem
       v-for="(item, index) in menuSmart"
-      :key="index"
+      :delay="index"
       :text="item.text"
       :href="item.href"
       :isActive="isVisibleForMenu[item.valueForMatchingWithProps] === item.name"
@@ -43,7 +43,7 @@ const smart = "smart";
   >
     <LayoutMenuItem
       v-for="(item, index) in menuPlatinum"
-      :key="index"
+      :delay="index"
       :text="item.text"
       :href="item.href"
       :isActive="isVisibleForMenu[item.valueForMatchingWithProps] === item.name"

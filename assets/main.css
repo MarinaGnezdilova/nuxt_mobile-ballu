@@ -1,14 +1,14 @@
-@import './normalize.css';
+@import "./normalize.css";
 
 @font-face {
-  src: url(../fonts/myriadpro-light.woff) format('woff');
-  font-family: 'MyriadProLight';
+  src: url(../fonts/myriadpro-light.woff) format("woff");
+  font-family: "MyriadProLight";
   font-weight: 400;
 }
 
 @font-face {
-  src: url(../fonts/MyriadPro-Regular.woff) format('woff');
-  font-family: 'MyriadProRegular';
+  src: url(../fonts/MyriadPro-Regular.woff) format("woff");
+  font-family: "MyriadProRegular";
   font-weight: 400;
 }
 
@@ -36,10 +36,89 @@
 
 html,
 body {
-  font-family: 'MyriadProLight', 'Arial', sans-serif;
+  font-family: "MyriadProLight", "Arial", sans-serif;
   font-size: 16px;
   font-weight: 400;
   position: relative;
   max-width: var(--fullHD);
   margin: auto;
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translate3d(0, 100px, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    transform: translate3d(100px, 0, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.fadeUp.delay0 {
+  opacity: 0;
+  animation: 1s ease-in 0.5s 1 both fadeUp;
+}
+
+.fadeUp.delay1 {
+  opacity: 0;
+  animation: 1s ease-in 1s 1 both fadeUp;
+}
+
+.fadeUp.delay2 {
+  opacity: 0;
+  animation: 1s ease-in 1.5s 1 both fadeUp;
+}
+
+.fadeUp.delay3 {
+  opacity: 0;
+  animation: 1s ease-in 2s 1 both fadeUp;
+}
+
+.fadeUp.delay4 {
+  opacity: 0;
+  animation: 1s ease-in 2.5s 1 both fadeUp;
+}
+
+.fadeUp.delay5 {
+  opacity: 0;
+  animation: 1s ease-in 3s 1 both fadeUp;
+}
+
+.fadeUp.delay6 {
+  opacity: 0;
+  animation: 1s ease-in 3.5s 1 both fadeUp;
+}
+
+.fadeRight.delay0 {
+  opacity: 0;
+  animation: 1s ease-in 0.3s 1 both fadeRight;
+}
+
+.fadeRight.delay1 {
+  opacity: 0;
+  animation: 1s ease-in 0.6s 1 both fadeRight;
+}
+
+.fadeRight.delay2 {
+  opacity: 0;
+  animation: 1s ease-in 0.9s 1 both fadeRight;
+}
+
+.fadeRight.delay3 {
+  opacity: 0;
+  animation: 1s ease-in 1.2s 1 both fadeRight;
 }
