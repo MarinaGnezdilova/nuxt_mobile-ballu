@@ -34,13 +34,13 @@ const emit = defineEmits(["close"]);
 
 <style>
 .popup {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background-color: rgb(103, 105, 109, 0.7);
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 6;

@@ -8,10 +8,6 @@ interface IntroBlock {
 }
 
 const props = withDefaults(defineProps<IntroBlock>(), {});
-let isVisibleTitle = ref<boolean>(false);
-let isVisibleText = ref<boolean>(false);
-let isVisibleSeries = ref<boolean>(false);
-let isVisiblePicture = ref<boolean>(false);
 </script>
 
 <template>
@@ -28,43 +24,41 @@ let isVisiblePicture = ref<boolean>(false);
     <div class="about__block">
       <div class="about__content">
         <IconLogo type="white" />
-          <div class="about__title">
-            <slot name="title" />
-          </div>
-      </div>
-        <div class="about__content">
-          <span
-            class="about__subtitle"
-            :class="isVisible ? 'fadeUp delay0' : ''"
-            >Мобильный кондиционер</span
-          >
-          <div class="about__subtitleBlock">
-            <p
-              class="about__subtitleText"
-              :class="isVisible ? 'fadeUp delay1' : ''"
-            >
-              серия
-            </p>
-            <p
-              class="about__subtitleSeries"
-              :class="isVisible ? 'fadeUp delay1' : ''"
-            >
-              {{ name }}
-            </p>
-          </div>
-          <ul class="about__badges">
-            <slot name="badges" />
-          </ul>
+        <div class="about__title">
+          <slot name="title" />
         </div>
+      </div>
+      <div class="about__content">
+        <span class="about__subtitle" :class="isVisible ? 'fadeUp delay0' : ''"
+          >Мобильный кондиционер</span
+        >
+        <div class="about__subtitleBlock">
+          <p
+            class="about__subtitleText"
+            :class="isVisible ? 'fadeUp delay1' : ''"
+          >
+            серия
+          </p>
+          <p
+            class="about__subtitleSeries"
+            :class="isVisible ? 'fadeUp delay1' : ''"
+          >
+            {{ name }}
+          </p>
+        </div>
+        <ul class="about__badges">
+          <slot name="badges" />
+        </ul>
+      </div>
     </div>
-      <picture class="about__device">
-        <img
-          :alt="name"
-          class="about__imageDevice"
-          :class="isVisible ? 'fadeUp delay0' : ''"
-          :src="srcDevice"
-        />
-      </picture>
+    <picture class="about__device">
+      <img
+        :alt="name"
+        class="about__imageDevice"
+        :class="isVisible ? 'fadeUp delay0' : ''"
+        :src="srcDevice"
+      />
+    </picture>
   </section>
 </template>
 
@@ -109,13 +103,13 @@ let isVisiblePicture = ref<boolean>(false);
 
 .about__subtitleBlock {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   margin-bottom: 15px;
 }
 
 .about__subtitleText {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   font-size: 46px;
   text-transform: lowercase;
   margin-right: 10px;
@@ -128,7 +122,7 @@ let isVisiblePicture = ref<boolean>(false);
 
 .about__badges {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   width: 150%;
 }
 

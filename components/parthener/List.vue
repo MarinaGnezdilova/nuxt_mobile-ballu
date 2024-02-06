@@ -39,7 +39,7 @@ const emit = defineEmits(["clickCity"]);
       class="parthners__countryBlock"
       v-for="country in countries"
       :key="country.country"
-      :class="{ hidden: !country.isCountryActive }"
+      :class="{ hiddenPartherList: !country.isCountryActive }"
     >
       <div class="parthners__citiesBlock">
         <div
@@ -68,7 +68,7 @@ const emit = defineEmits(["clickCity"]);
 .parthners {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   position: relative;
   margin-left: 5%;
   margin-right: 5%;
@@ -137,7 +137,7 @@ const emit = defineEmits(["clickCity"]);
 .parthners__list {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .parthners__city {

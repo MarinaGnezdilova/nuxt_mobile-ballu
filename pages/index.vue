@@ -23,7 +23,7 @@ const second = "second";
 const third = "third";
 const forth = "forth";
 
-const isPopupOpen = ref<boolean>(false);
+const isPopupClose = ref<boolean>(true);
 const currentCity = ref<string>("");
 let isVisiblePlatinum = ref<boolean>(false);
 let isVisibleSmart = ref<boolean>(false);
@@ -31,11 +31,11 @@ let isVisibleBadgePlatinum = ref<boolean>(false);
 let isVisibleBadgeSmart = ref<boolean>(false);
 
 const selectCity = (city: string): void => {
-  isPopupOpen.value = true;
+  isPopupClose.value = false;
   currentCity.value = city;
 };
 const closePopup = (): void => {
-  isPopupOpen.value = false;
+  isPopupClose.value = true;
 };
 
 const avto = ref<VNodeRef>("");
@@ -55,7 +55,7 @@ const maximum = "maximum";
 const silentString = "silent";
 const energoString = "energo";
 const optionsString = "four";
-const threeDString = "3D";
+const threeDString = "threeD";
 const compactString = "compact";
 const dryString = "dry";
 const nightString = "night";
@@ -249,7 +249,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   </section>
   <section id="countries">
     <ParthenerList
-      :class="{ hidden: !props.parthnersBlockActive[first] }"
+      :class="{ hiddenPartherList: !props.parthnersBlockActive[first] }"
       @clickCity="selectCity"
     />
   </section>
@@ -332,7 +332,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   </section>
   <section id="countries_smart">
      <ParthenerList
-      :class="{ hidden: !props.parthnersBlockActive[second] }"
+      :class="{ hiddenPartherList: !props.parthnersBlockActive[second] }"
       @clickCity="selectCity"
     />
   </section>
@@ -363,7 +363,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   </section>
   <section id="countries_smart-mechanic">
      <ParthenerList
-      :class="{ hidden: !props.parthnersBlockActive[third] }"
+      :class="{ hiddenPartherList: !props.parthnersBlockActive[third] }"
       @clickCity="selectCity"
     />
   </section>
@@ -390,14 +390,14 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   </section>
   <section id="countries_smart-pro">
       <ParthenerList
-        :class="{ hidden: !props.parthnersBlockActive[forth] }"
+        :class="{ hiddenPartherList: !props.parthnersBlockActive[forth] }"
         @clickCity="selectCity"
       />
     </section>
   <SectionOthers />
   <FooterBlock />
    <ParthenerPopup
-    :class="{ hidden: !isPopupOpen }"
+    :class="{ hidden: !isPopupClose }"
     :selectedCity="currentCity"
     @close="closePopup"
   />
@@ -453,7 +453,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
 }
 
 .hidden {
-  display: none;
+  display: flex;
 }
 
 .seriesPicture {
@@ -461,6 +461,10 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   margin-left: 10px;
   display: flex;
   overflow: hidden;
+}
+
+.hiddenPartherList {
+  display: none;
 }
 
 @media screen and (max-width: 1280px) {

@@ -34,7 +34,7 @@ const smart = "smart";
       :delay="index"
       :text="item.text"
       :href="item.href"
-      :isActive="isVisibleForMenu[item.valueForMatchingWithProps] === item.name"
+      :isActive="isVisibleForMenu[item.name] === item.name"
     />
   </ul>
   <ul
@@ -46,7 +46,7 @@ const smart = "smart";
       :delay="index"
       :text="item.text"
       :href="item.href"
-      :isActive="isVisibleForMenu[item.valueForMatchingWithProps] === item.name"
+      :isActive="isVisibleForMenu[item.name] === item.name"
     />
   </ul>
 </template>

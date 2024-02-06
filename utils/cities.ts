@@ -1,49 +1,51 @@
-import { countriesAndCities } from '../storage/parthener/cities';
-import { alphabet } from '../storage/constant/alphabet';
+import { countriesAndCities } from "../storage/parthener/cities";
+import { alphabet } from "../storage/constant/alphabet";
 
 interface CountryAndCities {
-  country: string,
-  isCountryActive: boolean,
-  cities: string[]
-};
+  country: string;
+  isCountryActive: boolean;
+  cities: string[];
+}
 
 interface NewCountryAndCities {
-  country: string,
-  isCountryActive: boolean,
-  cities: string[][]
-};
+  country: string;
+  isCountryActive: boolean;
+  cities: string[][];
+}
 
-const alphabetLenght = alphabet.length;
+const alphabetLength = alphabet.length;
 const newCountryWihCities: NewCountryAndCities[] = [];
 
-const convertCitiesToLowerCase = (cities:string[]) => {
+const convertCitiesToLowerCase = (cities: string[]) => {
   let newCities = [];
-  for(let i = 0; i < cities.length; i++) {
-    newCities.push(cities[i].toLowerCase())
+  for (let i = 0; i < cities.length; i++) {
+    newCities.push(cities[i].toLowerCase());
   }
   return newCities;
-}
+};
 
-const convertCitiesInNewSrtucture = (item:CountryAndCities) => {
+const convertCitiesInNewSrtucture = (item: CountryAndCities) => {
   let citiesSeparatedByLetters: string[][] = [];
-  let newCitiesArray =[];
+  let newCitiesArray = [];
   newCitiesArray = convertCitiesToLowerCase(item.cities);
-  for (let i = 0; i < alphabetLenght; i++) {
-    citiesSeparatedByLetters.push(newCitiesArray.filter((city) => city[0] === alphabet[i]).sort());
-  }; 
+  for (let i = 0; i < alphabetLength; i++) {
+    citiesSeparatedByLetters.push(
+      newCitiesArray.filter((city) => city[0] === alphabet[i]).sort()
+    );
+  }
   return citiesSeparatedByLetters;
-}
+};
 
-countriesAndCities.forEach(el => {
-let cities = [];
-cities = convertCitiesInNewSrtucture(el).filter( el => el.length > 0);
-newCountryWihCities.push(
-  {
+countriesAndCities.forEach((el) => {
+  let cities = [];
+  cities = convertCitiesInNewSrtucture(el).filter((el) => el.length > 0);
+  newCountryWihCities.push({
     country: el.country,
     isCountryActive: el.isCountryActive,
     cities: cities,
-   }
-  )
+  });
 });
 
-export const countriesAndCitiesArray = newCountryWihCities.filter( el => el.cities.length > 0);
+export const countriesAndCitiesArray = newCountryWihCities.filter(
+  (el) => el.cities.length > 0
+);
