@@ -11,17 +11,29 @@ import { badgesSmart } from "../storage/badges/smart";
 const leftDevicePlatinum = platinumSeries.slice(0, 2);
 const rightDevicePlatinum = platinumSeries.slice(2);
 
-const props = defineProps({
-  parthnersBlockActive: Object,
-  activeBlockByScroll: Function,
-  hiddenBlock: Function,
-});
+interface BlockActive {
+  first: boolean;
+  second: boolean;
+  third: boolean;
+  forth: boolean;
+};
+
+interface Props {
+  parthnersBlockActive: BlockActive;
+  activeBlockByScroll: Function;
+  hiddenBlock: Function;
+};
+
+const props = withDefaults(defineProps<Props>(), {});
 
 const emit = defineEmits(["clickButton"]);
-const first = "first";
-const second = "second";
-const third = "third";
-const forth = "forth";
+
+const parthenersBlock = {
+  first: "first",
+  second: "second",
+  third: "third",
+  forth: "forth",
+};
 
 const isPopupClose = ref<boolean>(true);
 const currentCity = ref<string>("");
@@ -49,107 +61,109 @@ const night = ref<VNodeRef>("");
 const platinumIntro = ref<VNodeRef>("");
 const smartIntro = ref<VNodeRef>("");
 
-const platinum = "platinum";
-const smart = "smart";
-const maximum = "maximum";
-const silentString = "silent";
-const energoString = "energo";
-const optionsString = "four";
-const threeDString = "threeD";
-const compactString = "compact";
-const dryString = "dry";
-const nightString = "night";
+const sections = {
+  platinum: "platinum",
+  smart: "smart",
+  maximum: "maximum",
+  silentString: "silent",
+  energoString: "energo",
+  optionsString: "four",
+  threeDString: "threeD",
+  compactString: "compact",
+  dryString: "dry",
+  nightString: "night",
+};
 
 useIntersectionObserver(platinumIntro, ([{ isIntersecting }]) => {
   if (isIntersecting) {
     isVisiblePlatinum.value = true;
-    isVisibleBadgePlatinum.value =true;
+    isVisibleBadgePlatinum.value = true;
   } else {
-    isVisibleBadgePlatinum.value =  false;
+    isVisibleBadgePlatinum.value = false;
     isVisiblePlatinum.value = false;
-}
+  }
 });
 
 useIntersectionObserver(smartIntro, ([{ isIntersecting }]) => {
   if (isIntersecting) {
     isVisibleSmart.value = true;
-    isVisibleBadgeSmart.value  = true;
+    isVisibleBadgeSmart.value = true;
   } else {
     isVisibleSmart.value = false;
-    isVisibleBadgeSmart.value =  false;
-}
+    isVisibleBadgeSmart.value = false;
+  }
 });
 
 useIntersectionObserver(avto, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(platinum, maximum);
-    props.hiddenBlock(silentString);
+    props.activeBlockByScroll(sections.platinum, sections.maximum);
+    props.hiddenBlock(sections.silentString);
   } else {
-    props.hiddenBlock(maximum);
+    props.hiddenBlock(sections.maximum);
   }
 });
 useIntersectionObserver(silent, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(platinum, silentString);
-    props.hiddenBlock(maximum);
-    props.hiddenBlock(energoString);
+    props.activeBlockByScroll(sections.platinum, sections.silentString);
+    props.hiddenBlock(sections.maximum);
+    props.hiddenBlock(sections.energoString);
   } else {
-    props.hiddenBlock(silentString);
+    props.hiddenBlock(sections.silentString);
   }
 });
 useIntersectionObserver(energoef, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(platinum, energoString);
-    props.hiddenBlock(silentString);
+    props.activeBlockByScroll(sections.platinum, sections.energoString);
+    props.hiddenBlock(sections.silentString);
   } else {
-    props.hiddenBlock(energoString);
+    props.hiddenBlock(sections.energoString);
   }
 });
 useIntersectionObserver(options, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(platinum, optionsString);
-    props.hiddenBlock(energoString);
+    props.activeBlockByScroll(sections.platinum, sections.optionsString);
+    props.hiddenBlock(sections.energoString);
   } else {
-    props.hiddenBlock(optionsString);
+    props.hiddenBlock(sections.optionsString);
   }
 });
 useIntersectionObserver(threeD, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(smart, threeDString);
-    props.hiddenBlock(compactString);
+    props.activeBlockByScroll(sections.smart, sections.threeDString);
+    props.hiddenBlock(sections.compactString);
   } else {
-    props.hiddenBlock(threeDString);
+    props.hiddenBlock(sections.threeDString);
   }
 });
 useIntersectionObserver(compact, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(smart, compactString);
-    props.hiddenBlock(threeDString);
-    props.hiddenBlock(dryString);
+    props.activeBlockByScroll(sections.smart, sections.compactString);
+    props.hiddenBlock(sections.threeDString);
+    props.hiddenBlock(sections.dryString);
   } else {
-    props.hiddenBlock(compactString);
+    props.hiddenBlock(sections.compactString);
   }
 });
 useIntersectionObserver(dry, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(smart, dryString);
-    props.hiddenBlock(compactString);
-    props.hiddenBlock(nightString);
+    props.activeBlockByScroll(sections.smart, sections.dryString);
+    props.hiddenBlock(sections.compactString);
+    props.hiddenBlock(sections.nightString);
   } else {
-    props.hiddenBlock(dryString);
+    props.hiddenBlock(sections.dryString);
   }
 });
 useIntersectionObserver(night, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    props.activeBlockByScroll(smart, nightString);
-    props.hiddenBlock(dryString);
+    props.activeBlockByScroll(sections.smart, sections.nightString);
+    props.hiddenBlock(sections.dryString);
   } else {
-    props.hiddenBlock(nightString);
+    props.hiddenBlock(sections.nightString);
   }
 });
 </script>
 
-<template>  
+<template>
   <Intro
     ref="platinumIntro"
     id="platinum"
@@ -160,19 +174,13 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
     :isVisible="isVisiblePlatinum"
   >
     <template v-slot:title>
-      <span 
-        class="titleText"
-        :class="isVisiblePlatinum ? 'fadeUp delay0' : ''"
+      <span class="titleText" :class="isVisiblePlatinum ? 'fadeUp delay0' : ''"
         >Надежная работа</span
       >
-      <span
-        class="titleText"
-        :class="isVisiblePlatinum ? 'fadeUp delay1' : ''"
+      <span class="titleText" :class="isVisiblePlatinum ? 'fadeUp delay1' : ''"
         >на охлаждение</span
       >
-      <span
-        class="titleText"
-        :class="isVisiblePlatinum ? 'fadeUp delay2' : ''"
+      <span class="titleText" :class="isVisiblePlatinum ? 'fadeUp delay2' : ''"
         >и обогрев</span
       >
     </template>
@@ -184,7 +192,6 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
         :union="item.union"
         :key="index"
         :class="isVisibleBadgePlatinum ? `fadeUp delay${index}` : ''"
-
       />
       <NuxtPicture
         class="seriesPicture"
@@ -205,7 +212,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   <SectionFour ref="options" />
   <section v-if="platinumSeries.length > 0" class="compare">
     <SectionTitle class="title-item compare__title">
-      <span @click="$emit('clickButton')">ТАБЛИЦА СРАВНЕНИЯ МОДЕЛЕЙ</span>
+      <span>ТАБЛИЦА СРАВНЕНИЯ МОДЕЛЕЙ</span>
     </SectionTitle>
     <div class="compare__table">
       <div class="compare__column">
@@ -215,14 +222,8 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
           :card="card"
           :active="card.model === 'BPHS-09H'"
         >
-          <CompareButtonBuy
-            text="Купить на shop.ballu.ru"
-            isForOfficalSite
-            href="#"
-          />
-          <CompareButtonBuy
-            text="Купить у партнеров"
-            @click="$emit('clickButton', first)"
+          <CompareButtonsBlock
+            @click-button="$emit('clickButton', parthenersBlock.first)"
             href="#countries"
           />
         </CompareCard>
@@ -233,14 +234,8 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
           :key="card.model"
           :card="card"
         >
-          <CompareButtonBuy
-            text="Купить на shop.ballu.ru"
-            isForOfficalSite
-            href="#"
-          />
-          <CompareButtonBuy
-            text="Купить у партнеров"
-            @click="$emit('clickButton', first)"
+          <CompareButtonsBlock
+            @click-button="$emit('clickButton', parthenersBlock.first)"
             href="#countries"
           />
         </CompareCard>
@@ -249,7 +244,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   </section>
   <section id="countries">
     <ParthenerList
-      :class="{ hiddenPartherList: !props.parthnersBlockActive[first] }"
+      :class="{ hiddenPartherList: !props.parthnersBlockActive.first }"
       @clickCity="selectCity"
     />
   </section>
@@ -263,24 +258,16 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
     :isVisible="isVisibleSmart"
   >
     <template v-slot:title>
-      <span 
-        class="titleText"
-        :class="isVisibleSmart ? 'fadeUp delay0' : ''"
+      <span class="titleText" :class="isVisibleSmart ? 'fadeUp delay0' : ''"
         >Расширяя границы</span
       >
-      <span 
-        class="titleText"
-        :class="isVisibleSmart ? 'fadeUp delay1' : ''"
+      <span class="titleText" :class="isVisibleSmart ? 'fadeUp delay1' : ''"
         >мобильные</span
       >
-      <span 
-        class="titleText"
-        :class="isVisibleSmart ? 'fadeUp delay2' : ''"
+      <span class="titleText" :class="isVisibleSmart ? 'fadeUp delay2' : ''"
         >кондиционеры</span
       >
-      <span 
-        class="titleText"
-        :class="isVisibleSmart ? 'fadeUp delay2' : ''"
+      <span class="titleText" :class="isVisibleSmart ? 'fadeUp delay2' : ''"
         >для дома и бизнеса</span
       >
     </template>
@@ -300,10 +287,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   <SectionCompact ref="compact" />
   <SectionDry ref="dry" />
   <SectionNight ref="night" />
-  <section
-    v-if="smartElectronic.length > 0"
-    class="compare"
-  >
+  <section v-if="smartElectronic.length > 0" class="compare">
     <SectionTitle class="title-item compare__title">
       <span>Таблица СРАВНЕНИЯ МОДЕЛЕЙ</span>
     </SectionTitle>
@@ -316,14 +300,8 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
           :active="card.model === 'BPAC-07 CE_1'"
           class="compare_smart-el-card"
         >
-          <CompareButtonBuy
-            text="Купить на shop.ballu.ru"
-            isForOfficalSite
-            href="#"
-          />
-          <CompareButtonBuy
-            text="Купить у партнеров"
-            @click="$emit('clickButton', second)"
+          <CompareButtonsBlock
+            @click-button="$emit('clickButton', parthenersBlock.second)"
             href="#countries_smart"
           />
         </CompareCard>
@@ -331,15 +309,12 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
     </div>
   </section>
   <section id="countries_smart">
-     <ParthenerList
-      :class="{ hiddenPartherList: !props.parthnersBlockActive[second] }"
+    <ParthenerList
+      :class="{ hiddenPartherList: !props.parthnersBlockActive.second }"
       @clickCity="selectCity"
     />
   </section>
-  <section
-    v-if="smartMechanic.length > 0"
-    class="compare"
-  >
+  <section v-if="smartMechanic.length > 0" class="compare">
     <div class="compare__table">
       <div class="compare__column compare__mechanic">
         <CompareCard
@@ -347,14 +322,8 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
           :key="card.model"
           :card="card"
         >
-          <CompareButtonBuy
-            text="Купить на shop.ballu.ru"
-            isForOfficalSite
-            href="#"
-          />
-          <CompareButtonBuy
-            text="Купить у партнеров"
-            @click="$emit('clickButton', third)"
+          <CompareButtonsBlock
+            @click-button="$emit('clickButton', parthenersBlock.third)"
             href="#countries_smart-mechanic"
           />
         </CompareCard>
@@ -362,26 +331,17 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
     </div>
   </section>
   <section id="countries_smart-mechanic">
-     <ParthenerList
-      :class="{ hiddenPartherList: !props.parthnersBlockActive[third] }"
+    <ParthenerList
+      :class="{ hiddenPartherList: !props.parthnersBlockActive.third }"
       @clickCity="selectCity"
     />
   </section>
-  <section
-    v-if="smartPro.length > 0"
-    class="compare"
-  >
+  <section v-if="smartPro.length > 0" class="compare">
     <div class="compare__table">
       <div class="compare__column compare__pro">
         <CompareCard v-for="card in smartPro" :key="card.model" :card="card">
-          <CompareButtonBuy
-            text="Купить на shop.ballu.ru"
-            isForOfficalSite
-            href="#"
-          />
-          <CompareButtonBuy
-            text="Купить у партнеров"
-            @click="$emit('clickButton', forth)"
+          <CompareButtonsBlock
+            @click-button="$emit('clickButton', parthenersBlock.forth)"
             href="#countries_smart-pro"
           />
         </CompareCard>
@@ -389,14 +349,14 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
     </div>
   </section>
   <section id="countries_smart-pro">
-      <ParthenerList
-        :class="{ hiddenPartherList: !props.parthnersBlockActive[forth] }"
-        @clickCity="selectCity"
-      />
-    </section>
+    <ParthenerList
+      :class="{ hiddenPartherList: !props.parthnersBlockActive.forth }"
+      @clickCity="selectCity"
+    />
+  </section>
   <SectionOthers />
   <FooterBlock />
-   <ParthenerPopup
+  <ParthenerPopup
     :class="{ hidden: !isPopupClose }"
     :selectedCity="currentCity"
     @close="closePopup"
@@ -522,6 +482,7 @@ useIntersectionObserver(night, ([{ isIntersecting }]) => {
   .compare__column:last-child {
     margin-left: 0;
   }
+
   .compare__smart {
     flex-direction: column;
     margin: 0 auto;

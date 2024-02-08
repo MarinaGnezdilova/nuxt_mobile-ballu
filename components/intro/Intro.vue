@@ -6,7 +6,6 @@ interface IntroBlock {
   srcDevice: string;
   isVisible: boolean;
 }
-
 const props = withDefaults(defineProps<IntroBlock>(), {});
 </script>
 

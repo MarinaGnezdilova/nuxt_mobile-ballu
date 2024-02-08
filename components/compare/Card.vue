@@ -3,7 +3,7 @@ import type { NuxtPicture } from '#build/components';
 interface CardProperty {
   name: string;
   value: string;
-}
+};
 interface Card {
   card: {
     series: string;
@@ -13,7 +13,7 @@ interface Card {
     properties: CardProperty[];
   };
   active?: boolean;
-}
+};
 const props = withDefaults(defineProps<Card>(), {
   active: false,
 });
@@ -21,10 +21,10 @@ const props = withDefaults(defineProps<Card>(), {
 
 <template>
   <div class="card__block">
-    <div class="card" :class="{ 'active': active }">
+    <div class="card" :class="{ active: active }">
       <NuxtPicture
         class="card__imageBlock"
-        :class="{ 'active': active }"
+        :class="{ active: active }"
         :src="card.src"
         :imgAttrs="{
           alt: 'Карточка товара',
@@ -32,39 +32,23 @@ const props = withDefaults(defineProps<Card>(), {
           loading: 'lazy',
         }"
       />
-      <div 
-        class="card__content"
-        :class="{ 'active': active }"
-        >
-        <div 
-          class="card__series" 
-          :class="{ 'active': active }">
+      <div class="card__content" :class="{ active: active }">
+        <div class="card__series" :class="{ active: active }">
           Серия {{ card.series }}
         </div>
-        <div 
-          class="card__model" 
-          :class="{ 'active': active }">
+        <div class="card__model" :class="{ active: active }">
           {{ card?.model }}
         </div>
-        <div 
-          v-for="(prop, index) in card.properties" 
-          :key="index">
-          <div 
-            class="card__prop" 
-            :class="{ 'active': active }">
+        <div v-for="(prop, index) in card.properties" :key="index">
+          <div class="card__prop" :class="{ active: active }">
             {{ prop.name }}
           </div>
-          <p
-            class="card__propValue"
-            :class="{ 'active': active }"
-          >
+          <p class="card__propValue" :class="{ active: active }">
             {{ prop.value }}
           </p>
         </div>
       </div>
-      <p 
-        class="card__price"
-        :class="{'active': active}">
+      <p class="card__price" :class="{ active: active }">
         {{ card.price }}
       </p>
     </div>
@@ -130,7 +114,6 @@ const props = withDefaults(defineProps<Card>(), {
   color: #fff;
 }
 
-
 .card__model {
   font-size: 46px;
   font-weight: lighter;
@@ -138,7 +121,7 @@ const props = withDefaults(defineProps<Card>(), {
   margin-bottom: 35px;
 }
 
-.card__model.active{
+.card__model.active {
   color: #fff;
 }
 

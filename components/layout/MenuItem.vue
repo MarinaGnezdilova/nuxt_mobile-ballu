@@ -11,8 +11,8 @@ const props = withDefaults(defineProps<MenuItem>(), {
 </script>
 
 <template>
-  <li class="nav__item" :class="{ 'active': isActive }">
-      <NuxtLink
+  <li class="nav__item" :class="{ active: isActive }">
+    <NuxtLink
       class="nav__link"
       :class="`fadeRight delay${delay}`"
       :to="`#${href}`"

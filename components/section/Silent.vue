@@ -37,5 +37,4 @@ useIntersectionObserver(title, ([{ isIntersecting }]) => {
   </Section>
 </template>
 
-<style>
-</style>
+<style></style>

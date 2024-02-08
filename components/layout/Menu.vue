@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { menuPlatinum } from "../../storage/menu/menuPlatinum";
 import { menuSmart } from "../../storage/menu/menuSmart";
-
 const props = defineProps({
   isVisibleForMenu: Object,
 });
@@ -25,10 +24,7 @@ const smart = "smart";
       @click="$emit('clickMainMenuItem', smart)"
     />
   </ul>
-  <ul
-    v-if="isVisibleForMenu?.mainBlockName === 'smart'"
-    class="menu__block"
-  >
+  <ul v-if="isVisibleForMenu?.mainBlockName === 'smart'" class="menu__block">
     <LayoutMenuItem
       v-for="(item, index) in menuSmart"
       :delay="index"
@@ -37,10 +33,7 @@ const smart = "smart";
       :isActive="isVisibleForMenu[item.name] === item.name"
     />
   </ul>
-  <ul
-    v-if="isVisibleForMenu?.mainBlockName === 'platinum'"
-    class="menu__block"
-  >
+  <ul v-if="isVisibleForMenu?.mainBlockName === 'platinum'" class="menu__block">
     <LayoutMenuItem
       v-for="(item, index) in menuPlatinum"
       :delay="index"
@@ -69,8 +62,8 @@ const smart = "smart";
 }
 
 .menu__block {
-    overflow-x: visible;
-    display: flex;
+  overflow-x: visible;
+  display: flex;
 }
 
 @media screen and (max-width: 1280px) {

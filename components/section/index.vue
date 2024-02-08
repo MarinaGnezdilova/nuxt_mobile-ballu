@@ -20,9 +20,9 @@ const props = withDefaults(defineProps<Section>(), {
         loading: 'lazy',
       }"
     />
-    <div class="section__content" :class="{ 'right': right }">
+    <div class="section__content" :class="{ right: right }">
       <slot name="title" />
-      <div class="section__block" :class="{ 'right': right }">
+      <div class="section__block" :class="{ right: right }">
         <p v-for="item in text" class="section__text">
           {{ item }}
         </p>
@@ -88,7 +88,7 @@ const props = withDefaults(defineProps<Section>(), {
 
   .section__block.right {
     width: 95%;
-    }
+  }
 }
 
 @media screen and (max-width: 1280px) {
@@ -103,14 +103,14 @@ const props = withDefaults(defineProps<Section>(), {
 }
 
 @media screen and (max-width: 1024px) {
-    .section__content {
-        top: 0;
-    }
+  .section__content {
+    top: 0;
+  }
 
-    .section__text {
+  .section__text {
     font-size: 14px;
     color: #0c0d0d;
-    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -138,8 +138,8 @@ const props = withDefaults(defineProps<Section>(), {
   }
 
   .section__content.right {
-        left: 2%;
-    }
+    left: 2%;
+  }
 
   .section__text {
     margin-top: 5px;

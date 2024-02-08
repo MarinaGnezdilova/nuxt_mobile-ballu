@@ -21,7 +21,7 @@ export const platinumSeries = [
                 name: "Вес",
                 value: "30 кг"
             }
-        ] 
+        ]
     },
     {
         series: "Paltinum" ,

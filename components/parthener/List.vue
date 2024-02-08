@@ -6,7 +6,6 @@ interface GeoData {
   isCountryActive: boolean;
   cities: string[][];
 }
-
 const countries = ref<GeoData[]>(countriesAndCitiesArray);
 const hadleClick = (event: Event) => {
   let currentCountryIndex = countries.value.findIndex(
@@ -158,7 +157,7 @@ const emit = defineEmits(["clickCity"]);
     height: 37px;
   }
 
-  .parthners__countryBlock  {
+  .parthners__countryBlock {
     top: 36px;
   }
 
